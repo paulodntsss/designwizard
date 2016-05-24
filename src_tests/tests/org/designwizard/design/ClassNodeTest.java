@@ -589,7 +589,7 @@ public class ClassNodeTest extends TestCase {
 		
 		clazz = this.dw.getClass("IF");
 		usedBy = clazz.getCalleeClasses();
-		assertEquals(0,usedBy.size());
+		assertEquals(2,usedBy.size());
 		
 		clazz = this.dw.getClass("Inteiro");
 		usedBy = clazz.getCalleeClasses();

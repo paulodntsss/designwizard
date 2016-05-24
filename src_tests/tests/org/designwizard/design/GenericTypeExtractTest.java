@@ -57,12 +57,10 @@ public class GenericTypeExtractTest extends TestCase {
 		}
 
         assertNotNull("GenericTypeExamples class?", genericTypeExamples);
-        assertNotNull("ElementType class?", elementType);
-        assertNotNull("ElementType class?", fieldNode);
+        assertNotNull("ElementType class?", dw.getClass("tests.org.designwizard.design.mocks.generictypes.ElementType"));
         
         assertTrue("Contains GenericTypeExamples class?", classes.contains(genericTypeExamples));
         assertTrue("Contains ElementType class?", classes.contains(elementType));
-        assertTrue("Contains FieldNode class?", classes.contains(fieldNode));
         
         assertEquals("total classes: ", 2, classes.size());
         assertEquals("total fields: ", 1, fields.size());
@@ -99,8 +97,9 @@ public class GenericTypeExtractTest extends TestCase {
     
     @Test
     public void testExtractionFieldNode() throws InexistentEntityException {
-        //external annotation and unused
-    	Set<ClassNode> callees = genericTypeExamples.getCalleeClasses();
+
+    	MethodNode getAccessedFields = genericTypeExamples.getDeclaredMethod("getAccessedFields()");
+    	Set<ClassNode> callees = getAccessedFields.getCalleeClasses();
     	for (ClassNode classNode : callees) {
 			System.out.println("FieldNode Extraction Test Callee: " + classNode.getName());
 		}

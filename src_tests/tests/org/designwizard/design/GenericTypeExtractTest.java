@@ -46,15 +46,9 @@ public class GenericTypeExtractTest extends TestCase {
     public void testAllClasses() throws InexistentEntityException {
         // Internal Classes of the project
         Set<ClassNode> classes = dw.getAllClasses();
-        for (ClassNode classNode : classes) {
-        	System.out.println("GenericTypeExamples Class: " + classNode.getName());
-		}
  
         Set<FieldNode> fields = genericTypeExamples.getAllFields();
         Set<MethodNode> methods = genericTypeExamples.getAllMethods();
-        for (MethodNode method : methods) {
-			System.out.println("GenericTypeExamples Method: " + method.getName());
-		}
 
         assertNotNull("GenericTypeExamples class?", genericTypeExamples);
         assertNotNull("ElementType class?", dw.getClass("tests.org.designwizard.design.mocks.generictypes.ElementType"));
@@ -75,10 +69,7 @@ public class GenericTypeExtractTest extends TestCase {
     	
     	MethodNode getElements = genericTypeExamples.getDeclaredMethod("getElements()");
     	Set<ClassNode> callees = getElements.getCalleeClasses();
-    	for (ClassNode classNode : callees) {
-			System.out.println("Get Elements Test Callee: " + classNode.getName());
-		}
-        
+    	
     	assertTrue("Contains ElementType class?", callees.contains(elementType));
     }
     
@@ -88,9 +79,6 @@ public class GenericTypeExtractTest extends TestCase {
     	
     	MethodNode setElements = genericTypeExamples.getDeclaredMethod("setElements(java.util.Set)");
     	Set<ClassNode> callees = setElements.getCalleeClasses();
-    	for (ClassNode classNode : callees) {
-			System.out.println("Set Elements Test Callee: " + classNode.getName());
-		}
         
     	assertTrue("Contains ElementType class?", callees.contains(elementType));
     }
@@ -100,9 +88,6 @@ public class GenericTypeExtractTest extends TestCase {
 
     	MethodNode getAccessedFields = genericTypeExamples.getDeclaredMethod("getAccessedFields()");
     	Set<ClassNode> callees = getAccessedFields.getCalleeClasses();
-    	for (ClassNode classNode : callees) {
-			System.out.println("FieldNode Extraction Test Callee: " + classNode.getName());
-		}
         
         assertTrue("Contains FieldNode?", callees.contains(fieldNode));
     }

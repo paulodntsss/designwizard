@@ -139,6 +139,9 @@ public class FactsExtractionClassVisitor extends FactsEventSourceImpl {
 		
 		}
 		
+		// Extraction of generic types of the type of the field
+		genericTypeExtration(field, signature);
+		
 		FactsExtractionFieldVisitor fieldVisitor = new FactsExtractionFieldVisitor(field);
 		fieldVisitor.addListener(super.listeners.getFirst());
 		
@@ -256,6 +259,9 @@ public class FactsExtractionClassVisitor extends FactsEventSourceImpl {
 			super.fireModifiersExtracted();
 		
 		}
+		
+		// Extraction of generic types of the return type of the method
+		genericTypeExtration(method, signature);
 
 		FactsExtractionMethodVisitor tcv = new FactsExtractionMethodVisitor(method);
 		tcv.addListener(super.listeners.getFirst());

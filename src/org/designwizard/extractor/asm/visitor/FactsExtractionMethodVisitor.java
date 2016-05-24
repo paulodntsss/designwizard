@@ -155,9 +155,12 @@ public class FactsExtractionMethodVisitor extends FactsEventSourceImpl implement
 		if (!"this".equals(name)) {
 			super.factEvent = new FactEvent(this, "LOAD", this.method, desc);
 			super.fireRelationExtracted();
+			
+
+			// If signature != null extract GenericType
+			// Extraction of generic types of the type of the local variable
+			genericTypeExtration(this.method, signature);
 		}
-		
-		//TODO If signature != null extract GenericType
 	}
 
 	public void visitLineNumber(final int line, final Label start) {}

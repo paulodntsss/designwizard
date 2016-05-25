@@ -58,8 +58,9 @@ public class GenericTypeExtractTest extends TestCase {
         
         assertEquals("total classes: ", 2, classes.size());
         assertEquals("total fields: ", 1, fields.size());
+
         // include GenericTypeExamples.<init>() - Constructor
-        assertEquals("total methods: ", 4, methods.size());
+        assertEquals("total methods: ", 6, methods.size());
     }
 
     
@@ -90,5 +91,23 @@ public class GenericTypeExtractTest extends TestCase {
     	Set<ClassNode> callees = getAccessedFields.getCalleeClasses();
         
         assertTrue("Contains FieldNode?", callees.contains(fieldNode));
+    }
+    
+    @Test
+    public void testExtractionElementType() throws InexistentEntityException {
+
+    	MethodNode extractElementType = genericTypeExamples.getDeclaredMethod("extractElementType()");
+    	Set<ClassNode> callees = extractElementType.getCalleeClasses();
+        
+    	assertTrue("Contains ElementType class?", callees.contains(elementType));
+    }
+    
+    @Test
+    public void testExtractFieldNode() throws InexistentEntityException {
+
+    	MethodNode extractFieldNode = genericTypeExamples.getDeclaredMethod("extractFieldNode()");
+    	Set<ClassNode> callees = extractFieldNode.getCalleeClasses();
+        
+    	assertTrue("Contains FieldNode?", callees.contains(fieldNode));
     }
 }

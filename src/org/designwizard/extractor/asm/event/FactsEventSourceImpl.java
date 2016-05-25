@@ -167,10 +167,7 @@ public class FactsEventSourceImpl implements FactsEventSource {
 			
 			// Extraction of generic types as ClassNode
 			Set<String> types = msv.getTypes();
-			for (String type : types) {
-				//factEvent = new FactEvent(FactsExtractionClassVisitor.class, type.replaceAll("[/\\\\]+", "."));
-				//fireClassExtracted();
-				
+			for (String type : types) {			
 				factEvent = new FactEvent(this, "LOAD", entity, type);
 				fireRelationExtracted();
 			}

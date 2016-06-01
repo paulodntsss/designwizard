@@ -139,8 +139,14 @@ public class FactsExtractionClassVisitor extends FactsEventSourceImpl {
 		
 		}
 		
-		// Extraction of generic types of the type of the field
-		genericTypeExtration(field, signature);
+		if (signature == null) {
+			super.factEvent = new FactEvent(this, "LOAD", this.className, desc);
+			super.fireRelationExtracted();
+		} else {
+			// If signature != null extract GenericType
+			// Extraction of generic types of the type of the field
+			genericTypeExtration(field, signature);
+		}
 		
 		FactsExtractionFieldVisitor fieldVisitor = new FactsExtractionFieldVisitor(field);
 		fieldVisitor.addListener(super.listeners.getFirst());

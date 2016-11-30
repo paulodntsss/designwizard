@@ -22,6 +22,8 @@
 		<sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
 	    <sonar.coverage.exclusions>${jacoco.excludePattern}</sonar.coverage.exclusions>
 		<sonar.jacoco.reportPath>${project.build.directory}/coverage-reports/jacoco-ut.exec</sonar.jacoco.reportPath>
+		
+		<sonar.junit.reportsPath>${basedir}/target/surefire-reports</sonar.junit.reportsPath>
 
 		<dw.groupId>org.designwizard</dw.groupId>
 		<dw.artifactId>designwizard</dw.artifactId>
@@ -363,6 +365,15 @@
 							</configuration>
 						</plugin>
 						<plugin>
+							<groupId>org.codehaus.mojo</groupId>
+							<artifactId>findbugs-maven-plugin</artifactId>
+							<version>3.0.4</version>
+							<configuration>
+								<threshold>High</threshold>
+								<effort>Default</effort>
+							</configuration>
+						</plugin>
+						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-checkstyle-plugin</artifactId>
 							<version>2.16</version>
@@ -385,14 +396,14 @@
 			</plugin>
 		</plugins>
 		<pluginManagement>
-           	<plugins>
-            	<plugin>
-               			<groupId>org.codehaus.mojo</groupId>
-               			<artifactId>sonar-maven-plugin</artifactId>
-               			<version>2.3</version>
-            	</plugin>
-            </plugins>
-        </pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.sonarsource.scanner.maven</groupId>
+					<artifactId>sonar-maven-plugin</artifactId>
+					<version>3.2</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 	<profiles>
         <profile>
